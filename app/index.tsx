@@ -1,9 +1,20 @@
+import { useState } from "react";
 import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import { Link } from "expo-router";
 
 import { Colors } from "@/constants/colors";
 
 export default function Login() {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState();
+
+    function handleLogin() {
+      console.log({
+        email,
+        password
+      });
+    }
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -19,15 +30,26 @@ export default function Login() {
       <View style={styles.form}>
         <View>
           <Text style={styles.label}>Email</Text>
-          <TextInput placeholder='Digite seu email...' style={styles.input} />
+          <TextInput 
+            placeholder='Digite seu email...' 
+            value={email}
+            onChangeText={setEmail}
+            style={styles.input} 
+          />
         </View>
 
         <View>
           <Text style={styles.label}>Senha</Text>
-          <TextInput placeholder='Digite sua senha...' secureTextEntry style={styles.input} />
+          <TextInput 
+            placeholder='Digite sua senha...' 
+            secureTextEntry 
+            value={password}
+            onChangeText={setPassword}
+            style={styles.input} 
+          />
         </View>
 
-        <Pressable style={styles.button}>
+        <Pressable style={styles.button} onPress={handleLogin}>
           <Text style={styles.buttonText}>Acessar</Text>
         </Pressable>
 
